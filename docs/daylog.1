@@ -1,0 +1,61 @@
+.TH DAYLOG 1
+.SH NAME
+daylog \- local-first task tracker and daily journal
+.SH SYNOPSIS
+.B daylog
+.RI [ command ]
+.SH DESCRIPTION
+.B daylog
+stores tasks and journal bullets locally in SQLite. It is designed for offline, single-user use.
+.SH COMMANDS
+.TP
+.B daylog add DESCRIPTION
+Create a task. Use \fB--project\fR, \fB--tag\fR, \fB--due\fR, and \fB--important\fR for metadata.
+.TP
+.B daylog task list
+List active tasks. Add \fB--json\fR for structured output.
+.TP
+.B daylog task important ID
+Mark a task important.
+.TP
+.B daylog task unimportant ID
+Clear a task's important flag.
+.TP
+.B daylog task toggle-important ID
+Toggle a task's important flag.
+.TP
+.B daylog journal add DESCRIPTION
+Create a journal bullet.
+.TP
+.B daylog review done
+Mark today's review complete.
+.TP
+.B daylog config show
+Show local configuration.
+.TP
+.B daylog doctor
+Check the local database and data directory.
+.TP
+.B daylog remind install
+Write the platform reminder scheduler configuration.
+.TP
+.B daylog data export
+Print a lossless-readable JSON snapshot of current task and journal records.
+.TP
+.B daylog data backup
+Create a timestamped local database backup.
+.TP
+.B daylog data import FILE
+Preview or apply a JSON snapshot. Use \fB--apply\fR and resolve conflicts with \fB--prefer-import\fR or \fB--prefer-local\fR.
+.TP
+.B daylog search [QUERY]
+Search task and journal records. Filter with \fB--project\fR, \fB--tag\fR, \fB--status\fR, and \fB--date\fR.
+.SH FILES
+.TP
+.B ~/.daylog/daylog.db
+The default SQLite database.
+.TP
+.B DAYLOG_DATA_DIR
+Environment variable overriding the data directory.
+.SH NOTES
+The complete TUI, reminders, import/export, and backup workflows are documented as they are implemented.

@@ -1,0 +1,15 @@
+version: 2
+project_name: daylog
+builds:
+  - main: ./cmd/daylog
+    goos: [darwin, linux]
+    goarch: [amd64, arm64]
+archives:
+  - formats: [tar.gz]
+    files:
+      - README.md
+      - CONTEXT.md
+      - docs/daylog.1
+      - docs/usage.md
+checksum:
+  name_template: 'checksums.txt'
