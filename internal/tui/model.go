@@ -45,6 +45,13 @@ func (i item) Title() string {
 		}
 		return title
 	}
+	if i.dateHeading != "" {
+		return i.dateHeading + "\n" + i.taskTitle()
+	}
+	return i.taskTitle()
+}
+
+func (i item) taskTitle() string {
 	prefix := "○"
 	if i.task.Status == domain.TaskDone {
 		prefix = "✓"
@@ -142,11 +149,12 @@ func New(a *app.App) Model {
 func (m Model) Init() tea.Cmd { return m.load }
 
 func (m Model) load() tea.Msg {
-	tasks, err := m.app.ListTasks(context.Background(), false)
+	includeDeleted := m.mode == TrashMode
+	tasks, err := m.app.ListTasks(context.Background(), includeDeleted)
 	if err != nil {
 		return loadedMsg{err: err}
 	}
-	journal, err := m.app.ListJournalEntries(context.Background(), false)
+	journal, err := m.app.ListJournalEntries(context.Background(), includeDeleted)
 	reviewed, reviewErr := m.app.IsReviewed(context.Background(), time.Now().In(time.Local).Format("2006-01-02"))
 	if err == nil {
 		err = reviewErr
