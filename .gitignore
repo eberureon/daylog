@@ -2,3 +2,4 @@ daylog
 *.db
 *.db-*
 .DS_Store
+dist/

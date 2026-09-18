@@ -5,7 +5,6 @@
 The project is under active development. The current implementation plan and agreed decisions are documented in:
 
 - [`CONTEXT.md`](CONTEXT.md)
-- [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md)
 
 The intended workflow is:
 
